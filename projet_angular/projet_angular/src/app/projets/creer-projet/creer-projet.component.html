@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <h1 mat-title>{{actionTitle}}</h1>
+        <form [formGroup]="projetForm" class="orientation_form">
+            <mat-form-field appearance="outline">
+                <mat-label>Theme</mat-label>
+                <input formControlName="theme" matInput [(ngModel)]="edtied_theme">
+                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                <!-- <mat-hint>Hint</mat-hint> -->
+            </mat-form-field>
+
+            <div mat-actions [align]="'end'">
+                <button mat-raised-button color="warn" (click)="back()" >Retour</button>
+                <button mat-raised-button color="primary" (click)="definirTheme()" >{{actionBtn}}</button>
+            </div>
+        </form>
+</div>

@@ -1,0 +1,104 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <button mat-mini-fab color="primary" aria-label="Edit" (click)="back()">
+        <mat-icon>undo</mat-icon>
+    </button>
+    <div class="title_theme">Theme : {{dataSourceProjet.theme}}
+        <div class="example-button-container">
+        </div>
+    </div>
+    <div class="">
+        <div class="my_title"> <u> Membres</u></div>
+        <div class="content_member">
+            <div class="content_card_encadreur">
+                <!-- card encadreur debut -->
+                <mat-accordion>
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Encadrant academique
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                {{dataSourceEncadreur.nom_enseignant}} {{dataSourceEncadreur.prenom_enseignant}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>Photo non définie.</p>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Informations
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                {{panelOpenState ? 'Cacher' : 'Dévoiler'}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>+237 {{dataSourceEncadreur.telephone_enseignant}}</p>
+                        <p>{{dataSourceEncadreur.email_enseignant}}</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <!-- card encadreur end -->
+            </div>
+            <div class="content_card_etudiants" *ngFor="let e of dataSourceEtudiant">
+                <!-- card encadreur debut -->
+                <mat-accordion>
+                    <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Etudiant
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                {{e.nom_etudiant}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>Photo non définie.</p>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Informations
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                {{panelOpenState ? 'Cacher' : 'Dévoiler'}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <p>Sur le projet {{e.id_projet}}</p>
+                        <p>{{e.nom_etudiant}} {{e.prenom_etudiant}}</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <!-- card encadreur end -->
+            </div>
+
+        </div>
+    </div>
+    <div class="my_title"> <u> Avancement du projet</u></div>
+    <div class="contain_advancement">
+        <mat-tab-group mat-align-tabs="center">
+            <div *ngFor="let e of dataSourceAllEtape">
+                <mat-icon>home</mat-icon>
+                <mat-tab label="Etape N° {{e.id}} Actuelle" *ngIf="e.id == dataSourceEtape[0].id_etapes">
+                    <div *ngIf="latest_date != null">
+                        <strong>
+                            <h3 class="bad_step" *ngIf="e.date_limite < latest_date">
+                                <mat-icon>star</mat-icon>En retard: {{e.intitule_etape}}
+                            </h3>
+                        </strong>
+                        <strong>
+                            <h3 class="good_step" *ngIf="e.date_limite > latest_date">
+                                <mat-icon>star</mat-icon>Dans les temps: {{e.intitule_etape}}
+                            </h3>
+                        </strong>
+                    </div>
+                    <h3>Du {{e.date_debut}} au {{e.date_limite}}</h3>
+                </mat-tab>
+                <mat-tab label="Etape N° {{e.id}}" *ngIf="e.id != dataSourceEtape[0].id_etapes">
+                    <h3>{{e.intitule_etape}}</h3>
+                    <h3>Du {{e.date_debut}} au {{e.date_limite}}</h3>
+                </mat-tab>
+            </div>
+            <!-- <mat-tab label="Second">Content 2</mat-tab>
+            <mat-tab label="Third">Content 3</mat-tab> -->
+        </mat-tab-group>
+    </div>
+</div>
+<app-footer></app-footer>

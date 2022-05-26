@@ -1,0 +1,43 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.orientation_form {
+    width: 80%;
+    box-shadow: 5px 5px 5xp grey;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 15%;
+}
+
+.container {
+    max-width: 95%;
+    margin: 0 auto;
+}
+.mat-raised-button{
+    margin: 10px;
+}

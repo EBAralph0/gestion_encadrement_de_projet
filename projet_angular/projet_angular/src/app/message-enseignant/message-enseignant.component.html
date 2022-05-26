@@ -1,0 +1,55 @@
+<div class="contain_all">
+    <div class="left_menu">
+        <div class="content_back_btn">
+            <div class="example-button-container">
+                <button mat-fab color="warn" aria-label="" (click)="back()">
+                    <mat-icon>undo</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="content_logo_chat">
+            <img class="logo_chat" src="assets/images/pz.png" alt="">
+            <div class="mini_title">Discussion de groupe</div>
+        </div>
+    </div>
+
+    <div class="rigth_content_chat">
+        <div class="header_chat">
+            {{projetInfo.theme}}
+        </div>
+        <div class="chatting">
+            <div class="content_messages">
+                <div *ngFor="let m of messages">
+                    <div *ngIf="m.id_enseignant == dataSourceEncadreur.id">
+                        <div class="my_message">
+                            {{m.contenu}}
+                        </div>
+                        <div class="my_detail_message">
+                            {{m.created_at}}
+                        </div>
+                    </div>
+                    <div *ngIf="m.id_enseignant != dataSourceEncadreur.id">
+                        <div class="message">
+                            {{m.contenu}}
+                        </div>
+                        <div class="detail_message">
+                            {{m.created_at}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sender">
+                <mat-form-field appearance="fill">
+                    <mat-label>Message</mat-label>
+                    <textarea matInput [(ngModel)]="contenu"></textarea>
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                </mat-form-field>
+                <div class="example-button-container">
+                    <button mat-fab color="primary" (click)="envoyerMessage()" aria-label="">
+                        <mat-icon>send</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
